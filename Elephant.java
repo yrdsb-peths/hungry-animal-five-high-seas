@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class Elephant here.
  * 
  * @author (Vincent) 
- * @version (version1 | 11/24/2022)
+ * @version (version2 | 11/30/2022)
  */
 public class Elephant extends Actor
 {
@@ -14,6 +14,32 @@ public class Elephant extends Actor
      */
     public void act()
     {
-        move(2);
+        // Arrow keys to move elephant left and right
+        if(Greenfoot.isKeyDown("left")) {
+            move(-2);
+        }
+        if(Greenfoot.isKeyDown("right")) {
+            move(2);
+        }
+        
+        // AD keys to move elephant left and right
+        if(Greenfoot.isKeyDown("a")) {
+            move(-2);
+        }
+        if(Greenfoot.isKeyDown("d")) {
+            move(2);
+        }
+        
+        // Removes apple if elephant eats it
+        eat();
+    }
+    
+    public void eat()
+    {
+        if(isTouching(Apple.class)) {
+            removeTouching(Apple.class);
+            MyWorld world = (MyWorld) getWorld();
+            world.spawnApple();
+        }
     }
 }
