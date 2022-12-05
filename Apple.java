@@ -15,5 +15,13 @@ public class Apple extends Actor
     public void act()
     {
         setLocation(getX(), getY() + 1);
+        
+        // Removes apple and draws game over when apple gets to bottom
+        MyWorld world = (MyWorld) getWorld();
+        if(getY() >= world.getHeight())
+        {
+            world.gameOver();
+            world.removeObject(this);
+        }
     }
 }
