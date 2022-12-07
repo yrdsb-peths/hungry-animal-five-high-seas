@@ -9,6 +9,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Elephant extends Actor
 {
     GreenfootSound elephantSound = new GreenfootSound("elephantcub.mp3");
+    GreenfootImage[] idle = new GreenfootImage[14];
+    
+    public Elephant()
+    {
+        for(int i = 0; i < 14; i++)
+        {
+            idle[i] = new GreenfootImage("images/elephant_idle/idle" + i
+            + ".png");
+            idle[i].scale(50, 50);
+        }
+        setImage(idle[0]);
+    }
+    
+    int imageIndex = 0;
+    public void animateElephant()
+    {
+        setImage(idle[imageIndex]);
+        imageIndex = (imageIndex + 1) % idle.length;
+    }
     
     /**
      * Act - do whatever the Elephant wants to do. This method is called whenever
@@ -34,6 +53,9 @@ public class Elephant extends Actor
         
         // Removes apple if elephant eats it
         eat();
+        
+        // Animate the elephant
+        animateElephant();
     }
     
     public void eat()
