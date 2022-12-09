@@ -27,6 +27,7 @@ public class MyWorld extends World
         addObject(scoreLabel, 50, 50);
         
         spawnApple();
+        
     }
     
     /**
