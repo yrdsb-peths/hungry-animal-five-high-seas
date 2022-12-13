@@ -8,21 +8,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elephant extends Actor
 {
+    int speed = 2;
+    // Creates the elephant sound that will play when elephant eats an apple
+    // Creates arrays for the # of frames of animation the game will cycle
+    // through depending if the elephant is facing right or left
     GreenfootSound elephantSound = new GreenfootSound("elephantcub.mp3");
     GreenfootImage[] idleRight = new GreenfootImage[14];
     GreenfootImage[] idleLeft = new GreenfootImage[14];
     
+    // String for when user presses 'A' or '->' to be used in "IF" loops
+    // Creating a Timer to control elephant animation speed
     String facing = "right";
     SimpleTimer animationTimer = new SimpleTimer();
     public Elephant()
     {
+        // Takes the image file name and puts it into the game
         for(int i = 0; i < idleRight.length; i++)
         {
             idleRight[i] = new GreenfootImage("images/elephant_idle/idle" + i
             + ".png");
             idleRight[i].scale(50, 50);
         }
-        
+        // Takes the image and flips it so the elephant faces LEFT
         for(int i = 0; i < idleLeft.length; i++)
         {
             idleLeft[i] = new GreenfootImage("images/elephant_idle/idle" + i
@@ -32,7 +39,7 @@ public class Elephant extends Actor
         }
         
         animationTimer.mark();
-        
+        // Sets image to the first image
         setImage(idleRight[0]);
         
     }
@@ -65,33 +72,36 @@ public class Elephant extends Actor
     {
         // Arrow keys to move elephant left and right
         if(Greenfoot.isKeyDown("left")) {
-            move(-2);
+            move(-(speed));
             facing = "left";
         }
         if(Greenfoot.isKeyDown("right")) {
-            move(2);
+            move(speed);
             facing = "right";
         }
         
         // AD keys to move elephant left and right
         if(Greenfoot.isKeyDown("a")) {
-            move(-2);
+            move(-(speed));
             facing = "left";
         }
         if(Greenfoot.isKeyDown("d")) {
-            move(2);
+            move(speed);
             facing = "right";
         }
         
         // Removes apple if elephant eats it
         eat();
         
-        // Animate the elephant
+        // Animates the elephant
         animateElephant();
     }
     
     public void eat()
     {
+        // If the elephant touches the apple, it increases apple, spawns
+        // another and removes the existing apple, the elephant sound will
+        // also play!
         if(isTouching(Apple.class)) {
             removeTouching(Apple.class);
             MyWorld world = (MyWorld) getWorld();
@@ -100,5 +110,10 @@ public class Elephant extends Actor
             
             elephantSound.play();
         }
+    }
+    
+    public void setSpeed(int spd)
+    {
+        speed = spd;
     }
 }

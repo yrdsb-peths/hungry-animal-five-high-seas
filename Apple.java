@@ -8,8 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Apple extends Actor
 {
+    int speed = 0;
+    
     public Apple()
     {
+        // Takes the apple.png file and scales it to appropriate proportions
+        // Also sets the apple object to the image
         GreenfootImage apple = new GreenfootImage("images/apple.png");
         apple.scale(25, 25);
         setImage(apple);
@@ -21,14 +25,22 @@ public class Apple extends Actor
      */
     public void act()
     {
-        setLocation(getX(), getY() + 1);
+        setLocation(getX(), getY() + speed);
         
         // Removes apple and draws game over when apple gets to bottom
         MyWorld world = (MyWorld) getWorld();
+        // If the apple touches the floor, the apple is removed from the game
+        // and the game over label is displayed
         if(getY() >= world.getHeight())
         {
             world.gameOver();
             world.removeObject(this);
         }
+    }
+    
+    public void setSpeed(int spd)
+    {
+        // Increases the speed of the apple falling
+        speed = spd;
     }
 }
