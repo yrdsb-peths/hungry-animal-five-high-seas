@@ -1,9 +1,13 @@
-# Hungry Animal Tutorial
+By: Vincent Wu
+# Hungry Animal
 
-*italics*
-**bold**
+To start the game, the user must press the **spacebar**. This removes the title screen and text and places the elephant near the bottom of the screen.
 
-[Putting a link onto text](https://youtu.be/zxaa3X0MihI)
+Using the 'A' and 'D', or the **left** and **right** arrow keys, move an elephant to eat as many apples that are falling from the ceiling as possible until time runs out. The counter for the # of apples eaten is on the upper left hand corner.
+
+If an apple falls to the bottom of the screen, the apple will be removed and a Game Over screen will be played.
+
+*Note: The user can still move the elephant even if the game is over, furthermore resetting the game will also reset the high score counter.*
 
 
 
